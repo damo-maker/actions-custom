@@ -13,6 +13,9 @@ else
     exit 1
 fi
 
+# Build the authorization header
+AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
+
 env
 jq . < $EVENT_PATH
 
