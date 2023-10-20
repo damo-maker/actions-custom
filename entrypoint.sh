@@ -32,14 +32,15 @@ then
     # URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases?access_token=${GITHUB_TOKEN}"
     URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases"
 
-    if ((LOCAL_TEST)); then
+    if [[ "${LOCAL_TEST}" == *"true"* ]];
+    then
         echo "## [TESTING] Keyword was found but no release was created."
     else
         # https://httpie.io/docs/cli/http-headers
         echo "$DATA" | http POST "$URL" "Authorization: token $GITHUB_TOKEN" | jq .
     fi
-    # otherwise
-    else
-        # exit gracefully
-        echo "Nothing to process."
-    fi
+# otherwise
+else
+    # exit gracefully
+    echo "Nothing to process."
+fi
