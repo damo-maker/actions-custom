@@ -13,9 +13,6 @@ else
     exit 1
 fi
 
-# Build the authorization header
-curl -H 'Authorization: token my_access_token' https://api.github.com/damo-maker/actions-custom
-
 env
 jq . < $EVENT_PATH
 
