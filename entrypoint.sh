@@ -14,7 +14,7 @@ else
 fi
 
 # Build the authorization header
-AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
+curl -H 'Authorization: token my_access_token' https://api.github.com/damo-maker/actions-custom
 
 env
 jq . < $EVENT_PATH
