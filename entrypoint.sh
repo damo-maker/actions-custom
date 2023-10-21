@@ -28,16 +28,15 @@ then
     DATA="${DATA} $(printf '"body":"Automated release based on keyword: %s",' "$*")"
     DATA="${DATA} $(printf '"draft":false, "prerelease":false}')"
 
-    # https://developer.github.com/changes/2020-02-10-deprecating-auth-through-query-param/
-    # URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases?access_token=${GITHUB_TOKEN}"
-    URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases"
+    URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases?access_token=${GITHUB_TOKEN}"
+
 
     if [[ "${LOCAL_TEST}" == *"true"* ]];
     then
         echo "## [TESTING] Keyword was found but no release was created."
     else
         # https://httpie.io/docs/cli/http-headers
-        echo "$DATA" | http POST $URL "Authorization: token $GITHUB_TOKEN" | jq .
+        echo "$DATA" | http POST $URL | jq .
     fi
 # otherwise
 else
