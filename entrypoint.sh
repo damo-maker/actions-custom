@@ -30,7 +30,7 @@ then
 
     AUTHORIZATION=$(curl --location --request POST 'https://api.github.com/repos/${GITHUB_REPOSITORY}/releases' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
-    --header "access_token=${secrets.GITHUB_TOKEN}")
+    --header "access_token=${GITHUB_TOKEN}")
 
     AUTHORIZATION = `jq '.GITHUB_TOKEN' <<< "$AUTHORIZATION"`
 
