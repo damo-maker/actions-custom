@@ -30,7 +30,11 @@ then
 
     AUTHORIZATION=$(curl --location --request POST 'https://api.github.com/repos/${GITHUB_REPOSITORY}/releases' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode "access_token=${GITHUB_TOKEN}") 
+    --data-urlencode "access_token=${GITHUB_TOKEN}")
+
+    AUTHORIZATION = `jq '.GITHUB_TOKEN' <<< "$AUTHORIZATION"`
+
+    AUTHORIZATION=`echo "$AUTHORIZATION" | tr -d '"'` 
 
     if [[ "${LOCAL_TEST}" == *"true"* ]];
     then
