@@ -30,7 +30,7 @@ then
 
     #URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases?access_token=${GITHUB_TOKEN}"
 
-    curl = curl -H 'Authorization: token MY_TOKEN_NUMBERS' https://api.github.com/repos/${GITHUB_REPOSITORY}/releases
+    URL = curl -H 'Authorization: token MY_TOKEN_NUMBERS' https://api.github.com/repos/${GITHUB_REPOSITORY}/releases
 
 
     if [[ "${LOCAL_TEST}" == *"true"* ]];
@@ -38,7 +38,7 @@ then
         echo "## [TESTING] Keyword was found but no release was created."
     else
         # https://httpie.io/docs/cli/http-headers
-        echo "$DATA" | http POST $curl | jq .
+        echo "$DATA" | http POST $URL | jq .
     fi
 # otherwise
 else
