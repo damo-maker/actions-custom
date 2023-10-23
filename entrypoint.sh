@@ -37,7 +37,7 @@ then
         echo "## [TESTING] Keyword was found but no release was created."
     else
         # https://httpie.io/docs/cli/http-headers
-        echo "$DATA" | http POST | jq .
+        echo "$DATA" | http POST 'Authorization: token GITHUB_TOKEN' | jq .
     fi
 # otherwise
 else
