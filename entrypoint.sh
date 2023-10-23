@@ -30,7 +30,7 @@ then
 
     #URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases?access_token=${GITHUB_TOKEN}"
 
-    curl -H 'Authorization: token GITHUB_TOKEN' https://api.github.com/repos/${GITHUB_REPOSITORY}/releases
+    curl -H 'Authorization: token MY_TOKEN_NUMBERS' https://api.github.com/repos/${GITHUB_REPOSITORY}/releases
 
 
     if [[ "${LOCAL_TEST}" == *"true"* ]];
