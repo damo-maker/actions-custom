@@ -27,23 +27,17 @@ then
     DATA="${DATA} $(printf '"name":"v%s",' $VERSION)"
     DATA="${DATA} $(printf '"body":"Automated release based on keyword: %s",' "$*")"
     DATA="${DATA} $(printf '"draft":false, "prerelease":false}')"
-    
-    curl = curl
 
-    AUTHORIZATION=$(curl --location --request POST 'https://api.github.com/repos/${GITHUB_REPOSITORY}/releases' \
-    --header 'Content-Type: application/json' \
-    --header "access_token=${GITHUB_TOKEN}")
+    #URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases?access_token=${GITHUB_TOKEN}"
 
-    AUTHORIZATION = `jq '.GITHUB_TOKEN' <<< "$AUTHORIZATION"`
-
-    AUTHORIZATION=`echo "$AUTHORIZATION" | tr -d '"'` 
+    URL = curl -H 'Authorization: token GITHUB_TOKEN' https://api.github.com/repos/${GITHUB_REPOSITORY}/releases
 
     if [[ "${LOCAL_TEST}" == *"true"* ]];
     then
         echo "## [TESTING] Keyword was found but no release was created."
     else
         # https://httpie.io/docs/cli/http-headers
-        echo "$DATA" | http POST curl $AUTHORIZATION | jq .
+        echo "$DATA" | http POST $URL | jq .
     fi
 # otherwise
 else
