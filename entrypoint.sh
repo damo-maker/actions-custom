@@ -38,7 +38,7 @@ then
         echo "## [TESTING] Keyword was found but no release was created."
     else
         # https://httpie.io/docs/cli/http-headers
-        echo "$DATA" | http POST $URL | jq .
+        echo "$DATA" | http POST | jq .
     fi
 # otherwise
 else
