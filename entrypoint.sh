@@ -29,7 +29,7 @@ then
     DATA="${DATA} $(printf '"draft":false, "prerelease":false}')"
 
     AUTHORIZATION=$(curl --location --request POST 'https://api.github.com/repos/${GITHUB_REPOSITORY}/releases' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --header 'Content-Type: application/json' \
     --header "access_token=${GITHUB_TOKEN}")
 
     AUTHORIZATION = `jq '.GITHUB_TOKEN' <<< "$AUTHORIZATION"`
