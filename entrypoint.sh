@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+curl = curl
 
 if [ -n "$GITHUB_EVENT_PATH" ];
 then
