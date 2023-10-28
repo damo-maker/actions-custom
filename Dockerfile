@@ -7,6 +7,7 @@ RUN apk add --no-cache \
         jq && \
         which bash && \
         which http && \
+        which curl && \
         which jq
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
